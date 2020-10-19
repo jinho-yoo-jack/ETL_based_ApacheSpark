@@ -1,0 +1,154 @@
+{
+  "mappings": {
+    "doc": {
+      "dynamic": "strict",
+      "properties": {
+        "custom": {
+          "type": "text",
+          "index": false
+        },
+        "keyword": {
+          "type": "text",
+          "fields": {
+            "autocomplete": {
+              "type": "text",
+              "analyzer": "autocomplete",
+              "search_analyzer": "autocomplete_search"
+            },
+            "autocomplete_remove_pattern": {
+              "type": "text",
+              "analyzer": "autocomplete_remove_space_analyzer",
+              "search_analyzer": "autocomplete_search"
+            },
+            "keyword": {
+              "type": "text",
+              "analyzer": "keyword_analyzer",
+              "search_analyzer": "autocomplete_search"
+            },
+            "prefix": {
+              "type": "text",
+              "term_vector" : "with_positions_offsets",
+              "analyzer": "prefix_analyzer",
+              "search_analyzer": "autocomplete_search"
+            }
+          },
+          "madeby" : {
+            "type" : "text",
+            "analyzer" : "keyword",
+            "fielddata" : true
+          },
+          "timestamp" : {
+            "type" : "date",
+            "format" : "date_time"
+          },
+          "weight" : {
+            "type" : "short"
+          }
+        }
+      }
+    },
+    "settings" : {
+      "index" : {
+        "number_of_shard" : "1",
+        "auto_expand_replicas" : "0-2",
+        "provided_name" : ".openquery-autocomplete_hompage_autocomplete",
+        "max_result_window" : "10000000",
+        "analyzer" : {
+          "autocomplete_middle" : {
+            "filter" : [
+              "lowercase",
+              "autocomplete_jaso",
+              "autocomplete_chosung",
+              "autocomplete_mistyping"
+            ],
+            "tokenizer" : "whitespace+path_tokenizer"
+          },
+          "autocomplete_remove_space_analyzer" : {
+            "filter" : [
+              "lowercase",
+              "autocomplete_jaso",
+              "autocomplete_chosung",
+              "autocomplete_mistyping"
+            ],
+            "char_filter" : [
+              "remove_special_char_filter",
+              "remove_whitespace_filter"
+            ],
+            "tokenizer" : "standard"
+          },
+          "keyword_analyzer" : {
+            "filter" : [
+              "lowercase"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "prefix_analyzer_search": {
+            "char_filter" : [
+              "remove_special_char_filter",
+              "remove_whitespace_filter"
+            ],
+            "tokenizer" : "lowercase"
+          },
+          "autocomplete_analyzer_search" : {
+            "filter" : [
+              "lowercase",
+              "autocomplete_jaso"
+            ],
+            "tokenizer" : "keyword"
+          },
+          "prefix_analyzer" : {
+            "filter" : [
+              "lowercase",
+              "autocomplete_jaso",
+              "autocomplete_chosung",
+              "autocomplete_mistyping"
+            ],
+            "tokenizer" : "prefix_tokenizer"
+          },
+          "autocomplete_analyzer" : {
+            "filter" : [
+             "lowercase",
+              "autocomplete_jaso",
+              "autocomplete_chosung",
+              "autocomplete_mistyping"
+            ],
+            "tokenizer" : "reverse_whitespace_path_tokenizer"
+          }
+        },
+        "char_filter" : {
+          "remove_whitespace_filter" : {
+            "pattern" : " ",
+            "type" : "pattern_replace",
+            "replacement" : ""
+          },
+          "remove_special_char_filter" : {
+            "pattern" : "[^가-힣xfe0-9a-zA-Z\\s]",
+            "type" : "pattern_replace",
+            "replacement" : ""
+          }
+        },
+        "tokenizer" : {
+          "reverse_whitespace_path_tokenizer" : {
+            "reverse" : "true",
+            "type" : "path_hierarchy",
+            "delimiter" : " "
+          },
+          "prefix_tokenizer" : {
+            "token_chars" : [
+              "letter",
+              "digit"
+            ],
+            "min_gram" : "1",
+            "type" : "nGram",
+            "max_gram" : "50"
+          },
+          "whitespace_path_tokenizer" : {
+            "reverse" : "true",
+            "type" : "path_hierarchy",
+            "delimiter" : " "
+          }
+        }
+      }
+    }
+  }
+}

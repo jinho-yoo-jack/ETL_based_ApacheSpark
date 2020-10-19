@@ -1,0 +1,29 @@
+# New IB-Connector Prototype
+
+spark.properties:
+  spark.app.name: "sparkTest"
+  spark.master: "local"
+  spark.driver.cores: 1
+  spark.driver.memory: 1g
+  spark.executor.memory: 1g
+
+input:
+  - 0:
+    format: "jdbc"
+    config:
+      driver: "com.mysql.jdbc.Driver"
+      url: "jdbc:mysql://localhost:3306/formentera?characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false"
+      user: "root"
+      password: "1q2w3e!Q@W#E"
+      dbtable: "p_orders"
+    data:
+      query: "select * from p_orders"
+      index.name: "p_orders"
+      primary.key: "id"
+
+output:
+  format: "elasticsearch"
+  config:
+    url:
+      - "localhost:9200"
+
