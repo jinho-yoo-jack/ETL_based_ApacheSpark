@@ -16,6 +16,7 @@ class SparkConfig:
         self.sparkProperties = configDto.sparkProps
         self.jdbcOptions = configDto.jdbcOption
         self.queryOptions = configDto.queryOption
+        # SparkConf() 객체의 Spark 속성(Properties) 값 설정
         self.setSparkProps()
 
     def setSparkProps(self):

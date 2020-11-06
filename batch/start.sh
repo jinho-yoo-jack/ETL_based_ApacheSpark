@@ -29,8 +29,12 @@ export SOURCE_HOME=`cd "$SOURCE_HOME/.."; pwd`
 
 # -------------------------------------------
 # Scala/Python HOME
+# VERSION = Scala code runner version 2.11.12
 # -------------------------------------------
-export PATH=$PATH:/usr/local/scala/bin
+SCALA_HOME=/usr/local/scala/bin
+export PATH=$PATH:$SCALA_HOME
+#export PATH=$PATH:/usr/local/scala/bin
+
 
 # Pyspark conf
 export SPARK_HOME=/Users/jinokku/DEV/spark-2.4.6-bin-hadoop2.6
@@ -39,9 +43,10 @@ export SPARK_LOCAL_IP='127.0.0.1'
 export PYSPARK_PYTHON=/usr/local/bin/python3.7
 
 ##Python Execution Source
-BINARY=$SOURCE_HOME/dbConnect.py
+BINARY=dbConnect.py
+CONFIG=/config/prototype.yml
 echo $BINARY
-spark-submit --packages="org.elasticsearch:elasticsearch-spark-20_2.11:7.8.0","mysql:mysql-connector-java:5.1.48" $SOURCE_HOME/$BINARY /config/prototype.yml
+spark-submit --packages="org.elasticsearch:elasticsearch-spark-20_2.11:7.8.0","mysql:mysql-connector-java:5.1.48" $SOURCE_HOME/$BINARY $CONFIG
 # -------------------------------------------
 # ENVIRONEMNT
 # -------------------------------------------

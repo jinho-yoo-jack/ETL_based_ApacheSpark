@@ -1,0 +1,87 @@
+{
+  "mappings": {
+    "_doc": {
+      "properties": {
+        "address": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "complete_date": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "create_at": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "id": {
+          "type": "long"
+        },
+        "name": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "needs": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "order_date": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        },
+        "order_status": {
+          "type": "long"
+        },
+        "price": {
+          "type": "long"
+        },
+        "product": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "site": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "telpno": {
+          "type": "text",
+          "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
+        },
+        "update_at": {
+          "type": "date",
+          "format": "yyyy-MM-dd"
+        }
+      }
+    }
+  }
+}

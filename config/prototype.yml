@@ -17,8 +17,20 @@ input:
       password: "1q2w3e!Q@W#E"
       dbtable: "p_orders"
     data:
-      query: "select * from p_orders"
-      index.name: "p_orders"
+      query: "SELECT
+                    id,
+                    site,
+                    name,
+                    telpno,
+                    product,
+                    price,
+                    order_status,
+                    DATE_FORMAT(order_date, 'yyyy-MM-dd')    AS order_date,
+                    DATE_FORMAT(update_at, 'yyyy-MM-dd')    AS update_at,
+                    DATE_FORMAT(create_at, 'yyyy-MM-dd')     AS create_at,
+                    DATE_FORMAT(complete_date, 'yyyy-MM-dd') AS complete_date
+              FROM p_orders"
+      index.name: "p_orders3"
       primary.key: "id"
 
 output:
